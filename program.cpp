@@ -37,6 +37,15 @@ std::string binaryToString(const std::string& binary) {
     return text;
 }
 
+// Функция для выполнения побитовой операции XOR
+std::string xorOperation(const std::string& textBinary, const std::string& keyBinary) {
+    std::string result;
+    for (size_t i = 0; i < textBinary.size(); ++i) {
+        result += (textBinary[i] == keyBinary[i]) ? '0' : '1';  // Применение XOR к каждому биту
+    }
+    return result;
+}
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
