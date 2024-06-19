@@ -12,6 +12,15 @@ std::string charToBinary(char c) {
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    setlocale(LC_ALL, "Russian");
+
+    std::string text;
+    std::cout << "Введите текст для шифрования: ";
+    std::getline(std::cin, text);
+
+    std::string key;
+    std::cout << "Введите гамму(ключ), по которому будет шифроваться текст: ";
+    std::getline(std::cin, key);
+    return 0;
 }
 
