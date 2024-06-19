@@ -57,6 +57,29 @@ int main()
     std::string key;
     std::cout << "Введите гамму(ключ), по которому будет шифроваться текст: ";
     std::getline(std::cin, key);
+
+    // Преобразование ключа в бинарный вид
+    std::string keyBinary = stringToBinary(key);
+    while (keyBinary.size() < text.size() * 8) {
+        keyBinary += keyBinary;  // Повторение ключа до нужной длины
+    }
+    keyBinary = keyBinary.substr(0, text.size() * 8);  // Обрезка ключа до нужной длины
+
+    // Преобразование текста в бинарный вид
+    std::string textBinary = stringToBinary(text);
+
+    // Шифрование
+    std::string encryptedBinary = xorOperation(textBinary, keyBinary);
+    std::string encryptedText = binaryToString(encryptedBinary);
+
+    std::cout << "Зашифрованный текст: " << encryptedText << std::endl;
+
+    // Расшифровка
+    std::string decryptedBinary = xorOperation(encryptedBinary, keyBinary);
+    std::string decryptedText = binaryToString(decryptedBinary);
+
+    std::cout << "Расшифрованный текст: " << decryptedText << std::endl;
+
     return 0;
 }
 
