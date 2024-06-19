@@ -19,6 +19,24 @@ std::string stringToBinary(const std::string& text) {
     return binaryString;
 }
 
+// Функция для преобразования двоичного представления в символ
+char binaryToChar(const std::string& binary) {
+    char c = 0;
+    for (size_t i = 0; i < 8; ++i) {
+        c = (c << 1) | (binary[i] - '0');  // Сдвиг влево и добавление текущего бита
+    }
+    return c;
+}
+
+// Функция для преобразования двоичной строки в текст
+std::string binaryToString(const std::string& binary) {
+    std::string text;
+    for (size_t i = 0; i < binary.size(); i += 8) {
+        text += binaryToChar(binary.substr(i, 8));  // Преобразование каждой 8-битной подстроки в символ
+    }
+    return text;
+}
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
