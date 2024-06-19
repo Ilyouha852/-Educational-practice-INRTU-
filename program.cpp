@@ -10,6 +10,15 @@ std::string charToBinary(char c) {
     return binary;
 }
 
+// Функция для преобразования строки в двоичный вид
+std::string stringToBinary(const std::string& text) {
+    std::string binaryString;
+    for (char c : text) {
+        binaryString += charToBinary(c);  // Преобразование каждого символа строки в двоичный вид
+    }
+    return binaryString;
+}
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
