@@ -49,20 +49,29 @@ std::string xorOperation(const std::string& textBinary, const std::string& keyBi
 int main()
 {
     setlocale(LC_ALL, "Russian");
-
+    
+    //Ввод текста
     std::string text;
     std::cout << "Введите текст для шифрования: ";
     std::getline(std::cin, text);
 
+    // Ввод гаммы
     std::string key;
-    std::cout << "Введите гамму(ключ), по которому будет шифроваться текст: ";
-    std::getline(std::cin, key);
+    int keyLength = 0;
+
+    std::cout << "\nВведите длину будущей гаммы.\nПРИМЕЧАНИЕ: длина гаммы должна превышать длину текста.\n";
+    while (keyLength < text.size()) {
+        std::cout << "\nДлина текста: " << text.size();
+
+        std::cout << "\nДлина гаммы: ";
+        std::cin >> keyLength;
+
+    srand(time(NULL));
+    for (int i = 0; i < keyLength; ++i) {
+        key += text[rand() % text.size()];
+    }
 
     // Преобразование ключа в бинарный вид
-    std::string keyBinary = stringToBinary(key);
-    while (keyBinary.size() < text.size() * 8) {
-        keyBinary += keyBinary;  // Повторение ключа до нужной длины
-    }
     keyBinary = keyBinary.substr(0, text.size() * 8);  // Обрезка ключа до нужной длины
 
     // Преобразование текста в бинарный вид
