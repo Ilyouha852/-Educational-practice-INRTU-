@@ -14,13 +14,15 @@ std::string stringToBinary(const std::string& text) {
     return binaryString;
 }
 
-// Функция для преобразования двоичного представления в символ
-char binaryToString(const std::string& binary) {
+// Функция для преобразования двоичного представления в строку
+std::string binaryToString(const std::string& binary) {
     std::string text;
     for (size_t i = 0; i < binary.size(); i += 8) {
+        char c = 0;
         for (size_t j = 0; j < 8; ++j) {
-            text += (c << 1) | (binary[i] - '0');  // Сдвиг влево и добавление текущего бита
+            c = (c << 1) | (binary[i + j] - '0');  // Сдвиг влево и добавление текущего бита
         }
+        text += c;
     }
     return text;
 }
